@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>Page Title</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="angular.min.js"></script>
+    <script src="jquery.min.js"></script>
+    <script src="value.js"></script>
+    <script src="controller.js"></script>
+</head>
+
+<body ng-controller="myController as vm">
+    <div class="container">
+        <h1 class="text-center">Test</h1>
+        <hr>
+        <button class="btn btn-primary" ng-click="vm.getFinalData()">Submit</button>
+        <hr>
+        <div class="row">
+            <div ng-repeat="mainZero in vm.main" class="col-2 ml-2">
+                <div class="row">
+                    <div ng-repeat="mainFirst in mainZero" class="col-3">
+                        <div ng-repeat="mainSecond in mainFirst" class="row mb-2">
+                            <div ng-repeat="mainThird in mainSecond" class="col-3 p-0 m-0">
+                                <div ng-repeat="mainForth in mainThird" class="mb-1">
+                                    <div ng-repeat="mainFifth in mainForth">
+                                        <div ng-repeat="digit in mainFifth track by $index" style="cursor: pointer" class="p-0 m-0 squre" ng-click="vm.toggleData(mainFifth, $index)">
+                                            {{digit}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
