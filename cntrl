@@ -1,0 +1,60 @@
+(function() {
+    'use strict';
+    angular.module('myApp').controller('myController', myControllerFunction);
+
+    myControllerFunction.$inject = ['$scope', 'main'];
+
+    function myControllerFunction(s, m) {
+        /* jshint -W040 */
+        var vm = this;
+        vm.main = m;
+
+        vm.toggleData = toggleDataFunction;
+        vm.getFinalData = getFinalDataFunction;
+
+        function toggleDataFunction(data, i) {
+            data[i] = data[i] === 0 ? 1 : 0;
+        }
+
+        function getHexaString(string) {
+            return parseInt(string, 2).toString(16).toUpperCase();
+        }
+
+        function getFinalDataFunction() {
+            var convertedData = angular.copy(vm.main);
+            var v0data = '';
+            for (var v0 = 0; v0 < convertedData.length; v0++) {
+                var v1data = [];
+                for (var v1 = (convertedData[v0].length - 1); v1 > -1; v1--) {
+                    var v2data = [];
+                    for (var v2 = (convertedData[v0][v1].length - 1); v2 > -1; v2--) {
+                        var v3data = [];
+                        for (var v3 = (convertedData[v0][v1][v2].length - 1); v3 > -1; v3--) {
+                            var v4data = [];
+                            for (var v4 = 0; v4 < convertedData[v0][v1][v2][v3].length; v4++) {
+                                var v5data = '';
+                                for (var v5 = 0; v5 < convertedData[v0][v1][v2][v3][v4].length; v5++) {
+                                    v5data += getHexaString(convertedData[v0][v1][v2][v3][v4][v5].join(''));
+                                }
+                                v4data.push(v5data);
+                            }
+                            v3data.push(v4data.join('"') + '"');
+                        }
+
+                        v2data.push(v3data.join('!') + '!');
+                    }
+
+                    v1data.push(v2data.join('#') + '#');
+                }
+                v0data = v1data.join('$') + '$';
+                console.log(v0data);
+            }
+            return v0data;
+        }
+
+        /*s.$watch('vm.main', function(n) {
+            console.log(getFinalDataFunction());
+        }, true);*/
+    }
+
+})();
