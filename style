@@ -1,0 +1,14 @@
+.bdr {
+    border: 1px solid #000000;
+    min-height: 20px;
+}
+
+.squre {
+    height: 15px;
+    width: 100%;
+    font-size: 8px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 13px;
+    border: 1px solid #000000;
+}
