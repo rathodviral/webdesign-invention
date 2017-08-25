@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>Page Title</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="angular.min.js"></script>
+    <script src="ng-file-upload.js"></script>
+    <script src="jquery.min.js"></script>
+    <script src="value.js"></script>
+    <script src="controller.js"></script>
+</head>
+
+<body ng-controller="myController as vm">
+    <div class="container">
+        <div class="row mt-5 mb-5">
+            <div class="col-2">
+                <h2>Upload</h2>
+                <hr>
+                <button class="btn btn-primary" ntype="file" ngf-select="vm.uploadFile($file, $invalidFiles)" accept="image/*" ngf-max-height="1000" ngf-max-size="1MB" ng-disabled="vm.isFileUpload">File upload</button>
+                <hr>
+                <button class="btn btn-primary" ng-click="vm.getFinalData()" ng-disabled="vm.isFileUpload">Submit</button>
+            </div>
+            <div class="col-10">
+                <div class="row" style="background-image:url({{vm.finalData.imageUrl}});background-repeat: no-repeat;background-position: center;">
+                    <div ng-repeat=" mainZero in vm.main " class="col-3">
+                        <div class="row">
+                            <div ng-repeat="mainFirst in mainZero " class="col-3 p-0 m-0">
+                                <div ng-repeat="mainSecond in mainFirst " class="row p-0 m-0">
+                                    <div ng-repeat="mainThird in mainSecond " class="col-3 p-0 m-0">
+                                        <div ng-repeat="mainForth in mainThird " class="p-0 m-0">
+                                            <div ng-repeat="mainFifth in mainForth ">
+                                                <div ng-repeat="digit in mainFifth track by $index " style="cursor: pointer " class="p-0 m-0 squre " ng-click="vm.toggleData(mainFifth, $index) ">
+                                                    {{digit}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
